@@ -63,7 +63,6 @@ public class Metodos {
         }
     }
 
-    
     public static void main(String[] args) {
         ObjetoProducto[][] almacen = new ObjetoProducto[5][6];
 
@@ -88,10 +87,62 @@ public class Metodos {
                     break;
                 }
             }
-            if (encontrado) break;
+            if (encontrado)
+                break;
         }
 
-        if (!encontrado) System.out.println("Producto no encontrado.");
+        if (!encontrado)
+            System.out.println("Producto no encontrado.");
         sc.close();
+    }
+
+    public Venta[][] LlenarMatrizP9(Venta[][] M, Scanner sc) {
+        System.out.println(" REGISTRO DE VENTAS ANUALES");
+
+        for (int i = 0; i < M.length; i++) {
+            System.out.println("INGRESE NOMBRE DEL VENDEDOR: " + (i + 1) + ":");
+            String nombre = sc.next();
+
+            for (int j = 0; j < M[i].length; j++) {
+                Venta v = new Venta();
+                v.setNombreVendedor(nombre);
+
+                System.out.println("Venta del mes " + (j + 1) + ": $");
+                v.setValorVenta(sc.nextDouble());
+
+                M[i][j] = v;
+
+            }
+        }
+        return M;
+    }
+
+    public void BuscarMejorVendedor(Venta[][] M) {
+
+        double maxVentasAnuales = -1;
+        String mejorVendedor = "";
+
+        System.out.println("RESULTADOS ANUALES POR VENDEDOR");
+
+        for (int i = 0; i < M.length; i++) {
+            double sumaFila = 0;
+            String nombreActual = M[i][0].getNombreVendedor();
+
+            for (int j = 0; j < M[i].length; j++) {
+                sumaFila += M[i][j].getValorVenta();
+            }
+
+            System.out.println("Vendedor: " + nombreActual + " | Totalidad Anual: $" + sumaFila);
+
+            if (sumaFila > maxVentasAnuales) {
+                maxVentasAnuales = sumaFila;
+                mejorVendedor = nombreActual;
+            }
+
+        }
+
+        System.out.println("EL VENDEDOR DEL AÑO ES: " + mejorVendedor.toUpperCase());
+        System.out.println("TOTAL VENDIDO : $" + maxVentasAnuales);
+
     }
 }

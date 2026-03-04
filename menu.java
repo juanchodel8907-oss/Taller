@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-
-
 public class menu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -52,7 +50,6 @@ public class menu {
                     columnas = sc.nextInt();
 
                     Producto[][] estanterias = new Producto[filas][columnas];
-               
 
                     estanterias = m.LlenarMatriz(estanterias, sc);
 
@@ -68,7 +65,10 @@ public class menu {
                     System.out.println("punto 8");
                     break;
                 case 9:
-                    System.out.println("punto 9");
+                    Venta[][] matrizVentas = new Venta[n][n];                    
+                    matrizVentas = m.LlenarMatrizP9(matrizVentas, sc);
+
+                    m.BuscarMejorVendedor(matrizVentas);
                     break;
                 case 10:
                     System.out.println("punto 10");
