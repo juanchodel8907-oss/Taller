@@ -1,10 +1,13 @@
 import java.util.Scanner;
 
+import Ejericio6.MetodosSupermercado;
+import Ejericio6.Producto;
+
 public class menu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Metodos m = new Metodos();
-        System.out.println("Ingrese la dimansión de la matriz");
+        System.out.println("Ingrese la dimansión de la matsriz");
         int n = m.ValidarEntero(sc);
         int opt = 0;
         boolean seguir = true;
@@ -40,7 +43,24 @@ public class menu {
                     System.out.println("punto 5");
                     break;
                 case 6:
-                    System.out.println("punto 6");
+                    int filas = 0;
+                    int columnas = 0;
+
+                    System.out.println("Ingrese la cantidad de filas de estanterías:");
+                    filas = sc.nextInt();
+
+                    System.out.println("Ingrese la cantidad de productos por estantería (columnas):");
+                    columnas = sc.nextInt();
+
+                    Producto[][] estanterias = new Producto[filas][columnas];
+               
+
+                    estanterias = m.LlenarMatriz(estanterias, sc);
+
+                    System.out.println("\nFiltrando productos disponibles...");
+                    Producto[] listaDisponibles = m.FiltrarDisponibles(estanterias);
+
+                    m.MostrarFiltrados(listaDisponibles);
                     break;
                 case 7:
                     System.out.println("punto 7");

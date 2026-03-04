@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import Ejericio6.Producto;
+
 public class Metodos {
     public int ValidarEntero(Scanner sc) {
         while (!sc.hasNextInt()) {
@@ -7,5 +9,59 @@ public class Metodos {
             sc.nextLine();
         }
         return sc.nextInt();
+    }
+
+    public Producto[][] LlenarMatriz(Producto[][] m, Scanner sc) {
+        System.out.println("\nLLENANDO ESTANTERÍAS DEL SUPERMERCADO ");
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[0].length; j++) {
+                Producto p = new Producto();
+
+                System.out.print("Ingrese el nombre del producto: ");
+                p.setNombre(sc.next());
+
+                System.out.print("Ingrese el precio: ");
+                p.setPrecio(sc.nextDouble());
+
+                System.out.print("Está disponible? (true para sí / false para no): ");
+                p.setDisponibilidad(sc.nextBoolean());
+
+                m[i][j] = p;
+            }
+        }
+        return m;
+    }
+
+    public Producto[] FiltrarDisponibles(Producto[][] m) {
+
+        int maxElementos = m.length * m[0].length;
+        Producto[] productosFiltrados = new Producto[maxElementos];
+
+        int k = 0;
+
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[0].length; j++) {
+
+                if (m[i][j].isDisponibilidad() == true) {
+
+                    productosFiltrados[k] = m[i][j];
+
+                    k++;
+                }
+
+            }
+        }
+
+        return productosFiltrados;
+    }
+
+    public void MostrarFiltrados(Producto[] arreglo) {
+        System.out.println("\nLISTA DE PRODUCTOS DISPONIBLES ");
+        for (int i = 0; i < arreglo.length; i++) {
+
+            if (arreglo[i] != null) {
+                System.out.println("Producto: " + arreglo[i].getNombre() + " | Precio: $" + arreglo[i].getPrecio());
+            }
+        }
     }
 }
