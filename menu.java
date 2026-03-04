@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-import Ejericio6.MetodosSupermercado;
-import Ejericio6.Producto;
+
 
 public class menu {
     public static void main(String[] args) {

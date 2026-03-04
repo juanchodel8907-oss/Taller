@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import Ejericio6.Producto;
-
 public class Metodos {
     public int ValidarEntero(Scanner sc) {
         while (!sc.hasNextInt()) {
@@ -63,5 +61,37 @@ public class Metodos {
                 System.out.println("Producto: " + arreglo[i].getNombre() + " | Precio: $" + arreglo[i].getPrecio());
             }
         }
+    }
+
+    
+    public static void main(String[] args) {
+        ObjetoProducto[][] almacen = new ObjetoProducto[5][6];
+
+        almacen[0][0] = new ObjetoProducto("Arroz", 2500, 10);
+        almacen[1][2] = new ObjetoProducto("Leche", 3200, 5);
+        almacen[4][5] = new ObjetoProducto("Cafe", 4500, 20);
+
+        BuscarEnAlmacen(almacen);
+    }
+
+    public static void BuscarEnAlmacen(ObjetoProducto[][] matriz) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nombre del producto a buscar: ");
+        String buscado = sc.nextLine();
+        boolean encontrado = false;
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                if (matriz[i][j] != null && matriz[i][j].getNombre().equalsIgnoreCase(buscado)) {
+                    System.out.println("Encontrado en Fila: " + i + ", Columna: " + j);
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (encontrado) break;
+        }
+
+        if (!encontrado) System.out.println("Producto no encontrado.");
+        sc.close();
     }
 }
