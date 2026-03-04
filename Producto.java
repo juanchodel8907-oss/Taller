@@ -1,4 +1,4 @@
-package Ejericio6;
+
 
 public class Producto {
     private String nombre;
